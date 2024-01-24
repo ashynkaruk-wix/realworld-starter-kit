@@ -1,10 +1,11 @@
-import {Text, View} from "react-native";
+import {Text, View, Image, StyleSheet} from "react-native";
 import {useEffect, useState} from "react";
+import {format, toDate} from "date-fns";
 
+const url = "https://api.realworld.io/api/articles?limit=20"
 export function BlogPosts() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const url = "https://api.realworld.io/api/articles?limit=20"
 
     useEffect(() => {
         fetch(url)
@@ -18,16 +19,16 @@ export function BlogPosts() {
     }, []);
 
     return (
-        <View >
+        <View>
             {loading ? (
                 <Text>Loading...</Text>
             ) : (
-                //  <Text>AAA</Text>
                 data.articles.map((article) => {
                     return (
-                        <View key = {article.slug}>
-                            <Text>{article.title}</Text>
-                            <Text>{article.description}</Text>
+                        <View key={article.slug}>
+                            <Author author={article.author} createdAt={article.createdAt}></Author>
+                            <Text style={styles.title}>{article.title}</Text>
+                            <Text style={styles.description}>{article.description}</Text>
                         </View>
                     );
                 })
@@ -35,3 +36,53 @@ export function BlogPosts() {
         </View>
     );
 }
+
+export function Author({author, createdAt}) {
+    return (
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Image
+                style={styles.tinyLogo}
+                source={{
+                    uri: `${author.image}`,
+                }}
+            />
+            <AuthorNameAndDate author={author} createdAt={createdAt}></AuthorNameAndDate>
+        </View>
+    )
+}
+
+export function AuthorNameAndDate({author, createdAt}) {
+    const date = new Date(createdAt)
+    const formattedDate = format(toDate(date), 'MMMM dd, yyyy');
+    return (
+        <View>
+            <Text style={styles.author}>{author.username}</Text>
+            <Text style={styles.createdAt}>{formattedDate}</Text>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    tinyLogo: {
+        width: 50,
+        height: 50,
+    },
+    title: {
+        marginTop: 8,
+        fontSize: 18,
+        fontWeight: "600",
+    },
+    description: {
+        marginTop: 4,
+        fontSize: 14,
+        color: "#999",
+    },
+    author: {
+        fontSize: 16,
+        color: "#8fbc8f"
+    },
+    createdAt: {
+        fontSize: 12,
+        color: "#999",
+    }
+});
