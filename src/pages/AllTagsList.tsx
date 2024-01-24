@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {Author, TagList} from "./BlogPostsList";
 import {tagsUrl} from "./constants";
 import {Tags} from "./Tag";
 

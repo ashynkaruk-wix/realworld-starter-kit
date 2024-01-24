@@ -1,4 +1,4 @@
-import {Author, BlogPosts} from "./BlogPostsList";
+import {BlogPosts} from "./BlogPostsList";
 import {AllTagsList} from "./AllTagsList";
 import {StyleSheet, Text, View} from "react-native";
 
