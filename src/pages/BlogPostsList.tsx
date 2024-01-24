@@ -1,7 +1,6 @@
 import {Text, View, Image, StyleSheet} from "react-native";
 import {useEffect, useState} from "react";
 import {format, toDate} from "date-fns";
-import {Chip} from "react-native-paper";
 import {articlesUrl} from "./constants";
 import {Tags} from "./Tag";
 

@@ -4,7 +4,7 @@ import {Author, TagList} from "./BlogPostsList";
 import {tagsUrl} from "./constants";
 import {Tags} from "./Tag";
 
-export function TagsList() {
+export function AllTagsList() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -24,11 +24,8 @@ export function TagsList() {
             {loading ? (
                 <Text>Loading...</Text>
             ) : (
-                <View>
-                    <Text style={styles.title}>Tags</Text>
-                    <View style={styles.tagsList}>
-                        <Tags tags={data.tags}></Tags>
-                    </View>
+                <View style={styles.tagsList}>
+                    <Tags tags={data.tags}></Tags>
                 </View>
             )}
         </View>
@@ -36,14 +33,6 @@ export function TagsList() {
 }
 
 const styles = StyleSheet.create({
-    title: {
-        marginLeft: 6,
-        marginRight: 6,
-        marginTop: 8,
-        marginBottom: 8,
-        fontSize: 18,
-        fontWeight: "600",
-    },
     tagsList: {
         flexDirection: 'row',
         marginBottom: 20,
