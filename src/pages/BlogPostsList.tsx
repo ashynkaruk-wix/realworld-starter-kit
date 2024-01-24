@@ -1,8 +1,11 @@
 import {Text, View, Image, StyleSheet} from "react-native";
 import {useEffect, useState} from "react";
 import {format, toDate} from "date-fns";
+import {Chip} from "react-native-paper";
+//import { Chip } from "react-native-paper";
 
 const url = "https://api.realworld.io/api/articles?limit=20"
+
 export function BlogPosts() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -29,7 +32,10 @@ export function BlogPosts() {
                             <Author author={article.author} createdAt={article.createdAt}></Author>
                             <Text style={styles.title}>{article.title}</Text>
                             <Text style={styles.description}>{article.description}</Text>
-                            <View style={styles.hrLine} />
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <TagList tags={article.tagList}></TagList>
+                            </View>
+                            <View style={styles.hrLine}/>
                         </View>
                     );
                 })
@@ -63,6 +69,22 @@ export function AuthorNameAndDate({author, createdAt}) {
     )
 }
 
+export function TagList({tags}) {
+    return (
+        tags.map((tag) => {
+            return (
+                <Tag tag={tag}></Tag>
+            );
+        })
+    );
+}
+
+export function Tag({tag}) {
+    return (
+        <Chip style={styles.tag} textStyle={{fontSize: 12}}>{tag}</Chip>
+    );
+}
+
 const styles = StyleSheet.create({
     tinyLogo: {
         width: 50,
@@ -94,9 +116,16 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: "#999",
     },
-    hrLine : {
+    hrLine: {
         margin: 14,
         borderBottomColor: "#999",
         borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+    tag: {
+        borderColor: "#999",
+        backgroundColor: `white`,
+        marginRight: 4,
+        marginLeft: 6,
+        marginTop: 4,
     }
 });
