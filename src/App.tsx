@@ -2,13 +2,14 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {BlogPosts} from './pages/BlogPostsList'
+import {GlobalFeed} from "./pages/GlobalFeed";
 
 export function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="Home" component={HomeScreen}/>
-                <Stack.Screen name="Global Feed" component={BlogPosts}/>
+                <Stack.Screen name="Global Feed" component={GlobalFeed}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
