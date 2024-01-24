@@ -1,7 +1,18 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {NavigationContainer} from "@react-navigation/native";
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {BlogPosts} from './pages/BlogPostsList'
 
+export function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={HomeScreen}/>
+                <Stack.Screen name="Blogs" component={BlogPosts}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
 function HomeScreen() {
     return (
         <View style={styles.container}>
@@ -11,15 +22,6 @@ function HomeScreen() {
 }
 
 const Stack = createNativeStackNavigator();
-export default function App() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Home" component={HomeScreen}/>
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
-}
 
 const styles = StyleSheet.create({
     container: {
