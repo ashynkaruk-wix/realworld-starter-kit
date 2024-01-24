@@ -29,6 +29,7 @@ export function BlogPosts() {
                             <Author author={article.author} createdAt={article.createdAt}></Author>
                             <Text style={styles.title}>{article.title}</Text>
                             <Text style={styles.description}>{article.description}</Text>
+                            <View style={styles.hrLine} />
                         </View>
                     );
                 })
@@ -66,23 +67,36 @@ const styles = StyleSheet.create({
     tinyLogo: {
         width: 50,
         height: 50,
+        marginLeft: 6,
+        marginRight: 6,
     },
     title: {
+        marginLeft: 6,
+        marginRight: 6,
         marginTop: 8,
         fontSize: 18,
         fontWeight: "600",
     },
     description: {
+        marginLeft: 6,
+        marginRight: 6,
         marginTop: 4,
         fontSize: 14,
         color: "#999",
     },
     author: {
+        marginLeft: 4,
         fontSize: 16,
         color: "#8fbc8f"
     },
     createdAt: {
+        marginLeft: 4,
         fontSize: 12,
         color: "#999",
+    },
+    hrLine : {
+        margin: 14,
+        borderBottomColor: "#999",
+        borderBottomWidth: StyleSheet.hairlineWidth,
     }
 });
