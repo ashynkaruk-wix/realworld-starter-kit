@@ -1,15 +1,18 @@
 import {Text, View, Image, StyleSheet} from "react-native";
 import {useEffect, useState} from "react";
 import {format, toDate} from "date-fns";
-import {articlesUrl} from "./constants";
+import {articlesUrl, articlesUrlFilteredByTags} from "./constants";
 import {Tags} from "./Tag";
 
-export function BlogPosts() {
+export function BlogPosts({selectedTag, onTagClick}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(articlesUrl)
+        const url = selectedTag ? articlesUrlFilteredByTags(selectedTag) : articlesUrl;
+        console.log("url: " + url)
+
+        fetch(url)
             .then((resp) => resp.json())
             .then((json) => {
                 setData(json)
@@ -17,7 +20,7 @@ export function BlogPosts() {
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
-    }, []);
+    }, [selectedTag]);
 
     return (
         <View>
@@ -30,8 +33,8 @@ export function BlogPosts() {
                             <Author author={article.author} createdAt={article.createdAt}></Author>
                             <Text style={styles.title}>{article.title}</Text>
                             <Text style={styles.description}>{article.description}</Text>
-                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Tags tags={article.tagList}></Tags>
+                            <View style={styles.tags}>
+                                <Tags tags={article.tagList} onTagClick={onTagClick}></Tags>
                             </View>
                             <View style={styles.hrLine}/>
                         </View>
@@ -102,5 +105,10 @@ const styles = StyleSheet.create({
         margin: 14,
         borderBottomColor: "#999",
         borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+    tags: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap'
     }
 });

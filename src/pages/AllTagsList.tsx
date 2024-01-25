@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from "react-native";
 import {tagsUrl} from "./constants";
 import {Tags} from "./Tag";
 
-export function AllTagsList() {
+export function AllTagsList({onTagClick}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -24,7 +24,7 @@ export function AllTagsList() {
                 <Text>Loading...</Text>
             ) : (
                 <View style={styles.tagsList}>
-                    <Tags tags={data.tags}></Tags>
+                    <Tags tags={data.tags} onTagClick={onTagClick}></Tags>
                 </View>
             )}
         </View>
