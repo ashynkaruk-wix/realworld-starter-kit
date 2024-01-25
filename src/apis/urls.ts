@@ -1,4 +1,8 @@
+import {Pagination} from "./types";
+
 const baseUrl = "https://api.realworld.io/api"
-export const articlesUrl = `${baseUrl}/articles?limit=20`
-export const articlesUrlFilteredByTags = (tag: string) => `${articlesUrl}&tag=${tag}`;
+export const articlesUrl = (pagination: Pagination, tag?: number) => {
+    const urlWithPagination = `${baseUrl}/articles?offset=${pagination.offset}&limit=${pagination.limit}`;
+    return tag ? `${urlWithPagination}&tag=${tag}` : urlWithPagination
+}
 export const tagsUrl = `${baseUrl}/tags`

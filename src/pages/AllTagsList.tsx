@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {tagsUrl} from "../apis/constants";
 import {Tags} from "./Tag";
 import {fetchAllTags} from "../apis/tags";
 
-export function AllTagsList({onTagClick}) {
+export function AllTagsList({onTagClick, setArticlesPagination}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -18,7 +17,7 @@ export function AllTagsList({onTagClick}) {
                 <Text>Loading...</Text>
             ) : (
                 <View style={styles.tagsList}>
-                    <Tags tags={data.tags} onTagClick={onTagClick}></Tags>
+                    <Tags tags={data.tags} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination}></Tags>
                 </View>
             )}
         </View>

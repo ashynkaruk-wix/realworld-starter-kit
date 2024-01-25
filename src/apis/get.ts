@@ -3,7 +3,7 @@ export function get({url, setData, setLoading}) {
         .then((resp) => resp.json())
         .then((json) => {
             setData(json)
-            console.log("response: " + JSON.stringify(json))
+       //     console.log("response: " + JSON.stringify(json))
         })
         .catch((error) => console.error(error))
         .finally(() => setLoading(false));
