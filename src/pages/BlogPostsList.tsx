@@ -1,4 +1,4 @@
-import {Text, View, Image, StyleSheet} from "react-native";
+import {Text, View, Image, StyleSheet, FlatList} from "react-native";
 import {useEffect, useState} from "react";
 import {format, toDate} from "date-fns";
 import {articlesUrl, articlesUrlFilteredByTags} from "./constants";
@@ -27,19 +27,20 @@ export function BlogPosts({selectedTag, onTagClick}) {
             {loading ? (
                 <Text>Loading...</Text>
             ) : (
-                data.articles.map((article) => {
-                    return (
-                        <View key={article.slug}>
-                            <Author author={article.author} createdAt={article.createdAt}></Author>
-                            <Text style={styles.title}>{article.title}</Text>
-                            <Text style={styles.description}>{article.description}</Text>
+                <View>
+                    <FlatList
+                        data={data.articles}
+                        renderItem={({item}) => {return (<View key={item.slug}>
+                            <Author author={item.author} createdAt={item.createdAt}></Author>
+                            <Text style={styles.title}>{item.title}</Text>
+                            <Text style={styles.description}>{item.description}</Text>
                             <View style={styles.tags}>
-                                <Tags tags={article.tagList} onTagClick={onTagClick}></Tags>
+                                <Tags tags={item.tagList} onTagClick={onTagClick}></Tags>
                             </View>
                             <View style={styles.hrLine}/>
-                        </View>
-                    );
-                })
+                        </View>)}}
+                    />
+                </View>
             )}
         </View>
     );
