@@ -1,4 +1,4 @@
-import {BlogPosts} from "./BlogPostsList";
+import {ArticlesList} from "./ArticlesList";
 import {AllTagsList} from "./AllTagsList";
 import {StyleSheet, Text, View} from "react-native";
 import {useState} from "react";
@@ -14,7 +14,7 @@ export function GlobalFeed() {
             </View>
             <View>
                 <Text style={styles.title}>Articles</Text>
-                <BlogPosts selectedTag={selectedTag} onTagClick={setTag}/>
+                <ArticlesList selectedTag={selectedTag} onTagClick={setTag}/>
             </View>
         </View>
     );
