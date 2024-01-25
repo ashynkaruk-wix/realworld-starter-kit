@@ -4,12 +4,11 @@ import {Article} from "./Article";
 import {fetchArticles} from "../apis/articles";
 import {pageSize} from "../apis/types";
 
-export function ArticlesList({selectedTag, onTagClick, pagination, setPagination}) {
-    const [data, setData] = useState([]);
+export function ArticlesList({selectedTag, onTagClick, pagination, setPagination, data, setData}) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchArticles({selectedTag, setData, setLoading, pagination: pagination});
+        fetchArticles({selectedTag, data, setData, setLoading, pagination: pagination});
     }, [selectedTag, pagination]);
 
     return (
@@ -19,11 +18,13 @@ export function ArticlesList({selectedTag, onTagClick, pagination, setPagination
             ) : (
                 <View>
                     <FlatList
-                        data={data.articles}
+                        data={data}
                         keyExtractor={item => item.slug}
                         onEndReached={() => setPagination({offset: pagination.offset + pageSize, limit: pagination.limit + pageSize})}
                         renderItem={({item}) => {
-                            return (<Article article={item} onTagClick={onTagClick} setArticlesPagination={setPagination}></Article>)
+                            return (<Article article={item} onTagClick={onTagClick}
+                                             setArticlesPagination={setPagination}setData={setData}
+                            ></Article>)
                         }}
                     />
                 </View>

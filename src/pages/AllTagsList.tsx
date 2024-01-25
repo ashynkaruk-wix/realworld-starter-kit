@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from "react-native";
 import {Tags} from "./Tag";
 import {fetchAllTags} from "../apis/tags";
 
-export function AllTagsList({onTagClick, setArticlesPagination}) {
+export function AllTagsList({onTagClick, setArticlesPagination, setArticlesData}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ export function AllTagsList({onTagClick, setArticlesPagination}) {
                 <Text>Loading...</Text>
             ) : (
                 <View style={styles.tagsList}>
-                    <Tags tags={data.tags} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination}></Tags>
+                    <Tags tags={data.tags} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination} setData={setArticlesData}></Tags>
                 </View>
             )}
         </View>

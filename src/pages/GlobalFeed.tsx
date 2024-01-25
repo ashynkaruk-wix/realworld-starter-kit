@@ -7,17 +7,19 @@ import {pageSize} from "../apis/types";
 export function GlobalFeed() {
     const [selectedTag, setTag] = useState('');
     const [articlesPagination, setArticlesPagination] = useState({offset: 0, limit: pageSize});
+    const [articlesData, setArticlesData] = useState([]);
 
     return (
         <View>
             <View>
                 <Text style={styles.title}>Tags</Text>
-                <AllTagsList onTagClick={setTag} setArticlesPagination={setArticlesPagination}/>
+                <AllTagsList onTagClick={setTag} setArticlesPagination={setArticlesPagination} setArticlesData={setArticlesData}/>
             </View>
             <View>
                 <Text style={styles.title}>Articles</Text>
                 <ArticlesList selectedTag={selectedTag} onTagClick={setTag}
                               pagination={articlesPagination} setPagination={setArticlesPagination}
+                              data={articlesData} setData={setArticlesData}
                 />
             </View>
         </View>
