@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     title: {
         marginLeft: 6,
         marginRight: 6,
-        marginTop: 8,
-        marginBottom: 8,
+        marginTop: 4,
+        marginBottom: 4,
         fontSize: 18,
         fontWeight: "600",
     },

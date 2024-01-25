@@ -34,7 +34,7 @@ export function AllTagsList({onTagClick}) {
 const styles = StyleSheet.create({
     tagsList: {
         flexDirection: 'row',
-        marginBottom: 20,
+        marginBottom: 8,
         flexWrap: 'wrap'
     }
 });
