@@ -1,6 +1,7 @@
 import {Image, StyleSheet, Text, View} from "react-native";
 import {Tags} from "./Tag";
 import {format, toDate} from "date-fns";
+
 export function Article({article, onTagClick}) {
     return (<View key={article.slug}>
         <Author author={article.author} createdAt={article.createdAt}></Author>
@@ -12,6 +13,7 @@ export function Article({article, onTagClick}) {
         <View style={styles.hrLine}/>
     </View>)
 }
+
 export function Author({author, createdAt}) {
     return (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -25,6 +27,7 @@ export function Author({author, createdAt}) {
         </View>
     )
 }
+
 export function AuthorNameAndDate({author, createdAt}) {
     const date = new Date(createdAt)
     const formattedDate = format(toDate(date), 'MMMM dd, yyyy');
