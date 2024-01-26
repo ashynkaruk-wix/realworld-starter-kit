@@ -1,6 +1,6 @@
 import {Text, View, FlatList} from "react-native";
 import {useEffect, useState} from "react";
-import {Article} from "./Article";
+import {ArticleItem} from "./ArticleItem";
 import {fetchArticles} from "../apis/articles";
 import {pageSize} from "../apis/types";
 
@@ -20,11 +20,14 @@ export function ArticlesList({selectedTag, onTagClick, pagination, setPagination
                     <FlatList
                         data={data}
                         keyExtractor={item => item.slug}
-                        onEndReached={() => setPagination({offset: pagination.offset + pageSize, limit: pagination.limit + pageSize})}
+                        onEndReached={() => setPagination({
+                            offset: pagination.offset + pageSize,
+                            limit: pagination.limit + pageSize
+                        })}
                         renderItem={({item}) => {
-                            return (<Article article={item} onTagClick={onTagClick}
-                                             setArticlesPagination={setPagination}setData={setData}
-                            ></Article>)
+                            return (<ArticleItem article={item} onTagClick={onTagClick}
+                                                 setArticlesPagination={setPagination} setData={setData}
+                            ></ArticleItem>)
                         }}
                     />
                 </View>

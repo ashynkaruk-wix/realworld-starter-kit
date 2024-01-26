@@ -3,4 +3,4 @@ export type Pagination = {
     limit: number;
 }
 
-export const pageSize = 5;
+export const pageSize = 20;

@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, View} from "react-native";
 import {Tags} from "./Tag";
 import {format, toDate} from "date-fns";
 
-export function Article({article, onTagClick, setArticlesPagination, setData}) {
+export function ArticleItem({article, onTagClick, setArticlesPagination, setData}) {
     return (<View key={article.slug}>
         <Author author={article.author} createdAt={article.createdAt}></Author>
         <Text style={styles.title}>{article.title}</Text>
