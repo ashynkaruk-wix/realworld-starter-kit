@@ -1,8 +1,10 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {BlogPosts} from './pages/BlogPostsList'
 import {GlobalFeed} from "./pages/GlobalFeed";
+import {Article} from "./pages/Article";
+import {ArticleItem} from "./pages/ArticleItem";
+import {ArticlesList} from "./pages/ArticlesList";
 
 export function App() {
     return (
@@ -10,11 +12,15 @@ export function App() {
             <Stack.Navigator>
                 <Stack.Screen name="Home" component={HomeScreen}/>
                 <Stack.Screen name="Global Feed" component={GlobalFeed}/>
+                <Stack.Screen name="Article" component={Article}/>
+                <Stack.Screen name="ArticleItem" component={ArticleItem}/>
+                <Stack.Screen name="ArticlesList" component={ArticlesList}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
 }
-function HomeScreen({ navigation }) {
+
+function HomeScreen({navigation}) {
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>

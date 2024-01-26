@@ -1,8 +1,7 @@
-import {articlesUrl} from "./urls";
-import {get} from "./get";
+import {getArticlesUrl, listArticlesUrl} from "./urls";
 
 export function fetchArticles({selectedTag, data, setData, setLoading, pagination}) {
-    const url = articlesUrl(pagination, selectedTag);
+    const url = listArticlesUrl(pagination, selectedTag);
     console.log("url: " + url)
 
     fetch(url)
@@ -14,4 +13,18 @@ export function fetchArticles({selectedTag, data, setData, setLoading, paginatio
         })
         .catch((error) => console.error(error))
         .finally(() => setLoading(false));
+}
+
+export function getArticle({slug, setArticle, setLoading}) {
+    let url = getArticlesUrl(slug);
+    console.log("get url: " + url)
+    fetch(url)
+        .then((resp) => resp.json())
+        .then((json) => {
+            setArticle(json.article);
+            console.log("get response: " + JSON.stringify(json))
+        })
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+
 }

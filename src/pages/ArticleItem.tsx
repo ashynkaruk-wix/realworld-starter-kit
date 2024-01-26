@@ -1,11 +1,14 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {Tags} from "./Tag";
-import {format, toDate} from "date-fns";
+import {Author} from "./Author";
+import {useNavigation} from "@react-navigation/native";
 
 export function ArticleItem({article, onTagClick, setArticlesPagination, setData}) {
+   const navigation = useNavigation();
+
     return (<View key={article.slug}>
         <Author author={article.author} createdAt={article.createdAt}></Author>
-        <Text style={styles.title}>{article.title}</Text>
+        <Text style={styles.title} onPress={_ => navigation.navigate('Article', {slug: article.slug})}>{article.title}</Text>
         <Text style={styles.description}>{article.description}</Text>
         <View style={styles.tags}>
             <Tags tags={article.tagList} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination} setData={setData}></Tags>
@@ -14,38 +17,7 @@ export function ArticleItem({article, onTagClick, setArticlesPagination, setData
     </View>)
 }
 
-export function Author({author, createdAt}) {
-    return (
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Image
-                style={styles.tinyLogo}
-                source={{
-                    uri: `${author.image}`,
-                }}
-            />
-            <AuthorNameAndDate author={author} createdAt={createdAt}></AuthorNameAndDate>
-        </View>
-    )
-}
-
-export function AuthorNameAndDate({author, createdAt}) {
-    const date = new Date(createdAt)
-    const formattedDate = format(toDate(date), 'MMMM dd, yyyy');
-    return (
-        <View>
-            <Text style={styles.author}>{author.username}</Text>
-            <Text style={styles.createdAt}>{formattedDate}</Text>
-        </View>
-    )
-}
-
 const styles = StyleSheet.create({
-    tinyLogo: {
-        width: 50,
-        height: 50,
-        marginLeft: 6,
-        marginRight: 6,
-    },
     title: {
         marginLeft: 6,
         marginRight: 6,
@@ -58,16 +30,6 @@ const styles = StyleSheet.create({
         marginRight: 6,
         marginTop: 4,
         fontSize: 14,
-        color: "#999",
-    },
-    author: {
-        marginLeft: 4,
-        fontSize: 16,
-        color: "#8fbc8f"
-    },
-    createdAt: {
-        marginLeft: 4,
-        fontSize: 12,
         color: "#999",
     },
     hrLine: {
