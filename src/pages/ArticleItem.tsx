@@ -3,7 +3,7 @@ import {Tags} from "./Tag";
 import {Author} from "./Author";
 import {useNavigation} from "@react-navigation/native";
 
-export function ArticleItem({article, onTagClick, setArticlesPagination, setData}) {
+export const ArticleItem = ({article, onTagClick, setArticlesPagination, setData}) => {
    const navigation = useNavigation();
 
     const tagsComponent = <View style={styles.tags}>

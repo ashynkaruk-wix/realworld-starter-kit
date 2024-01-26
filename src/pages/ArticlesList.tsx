@@ -4,7 +4,7 @@ import {ArticleItem} from "./ArticleItem";
 import {fetchArticles} from "../apis/articles";
 import {pageSize} from "../apis/types";
 
-export function ArticlesList({selectedTag, onTagClick, pagination, setPagination, data, setData}) {
+export const ArticlesList = ({selectedTag, onTagClick, pagination, setPagination, data, setData}) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

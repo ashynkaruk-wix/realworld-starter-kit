@@ -1,6 +1,6 @@
 import {getArticlesUrl, listArticlesUrl} from "./urls";
 
-export function fetchArticles({selectedTag, data, setData, setLoading, pagination}) {
+export const fetchArticles = ({selectedTag, data, setData, setLoading, pagination}) => {
     const url = listArticlesUrl(pagination, selectedTag);
     console.log("url: " + url)
 
@@ -15,7 +15,7 @@ export function fetchArticles({selectedTag, data, setData, setLoading, paginatio
         .finally(() => setLoading(false));
 }
 
-export function getArticle({slug, setArticle, setLoading}) {
+export const getArticle = ({slug, setArticle, setLoading}) => {
     let url = getArticlesUrl(slug);
     console.log("get url: " + url)
     fetch(url)

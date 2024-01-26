@@ -2,7 +2,7 @@ import {Chip} from "react-native-paper";
 import {StyleSheet} from "react-native";
 import {pageSize} from "../apis/types";
 
-export function Tags({tags, onTagClick, setArticlesPagination, setData}) {
+export const Tags = ({tags, onTagClick, setArticlesPagination, setData}) => {
     return (
         tags.map((tag) => {
             return (

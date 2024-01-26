@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {getArticle} from "../apis/articles";
 import {Author} from "./Author";
 
-export function Article({route}) {
+export const Article = ({route}) => {
     const { slug, tagsComponent } = route.params;
     const [article, setArticle] = useState(undefined);
     const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ export function Article({route}) {
         ) : (<View key={slug}>
             <Text style={styles.title}>{article.title}</Text>
             <Author author={article.author} createdAt={article.createdAt}></Author>
-            <ScrollView style={{ flexGrow: 0.7 }}><Text style={styles.body}>{article.body}</Text></ScrollView>
+            <ScrollView style={{ flexGrow: 0.7}}><Text style={styles.body}>{article.body}</Text></ScrollView>
             {tagsComponent}
             <View style={styles.hrLine}/>
         </View>)
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         marginLeft: 6,
         marginRight: 6,
         marginTop: 4,
+        marginBottom: 6,
         fontSize: 14,
         color: "#999",
         flexGrow: 0.5

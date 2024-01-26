@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View} from "react-native";
 import {format, toDate} from "date-fns/index";
 
-export function Author({author, createdAt}) {
+export const Author = ({author, createdAt}) => {
     return (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image

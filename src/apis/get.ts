@@ -1,4 +1,4 @@
-export function get({url, setData, setLoading}) {
+export const get = ({url, setData, setLoading}) => {
     fetch(url)
         .then((resp) => resp.json())
         .then((json) => {

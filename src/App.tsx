@@ -6,7 +6,7 @@ import {Article} from "./pages/Article";
 import {ArticleItem} from "./pages/ArticleItem";
 import {ArticlesList} from "./pages/ArticlesList";
 
-export function App() {
+export const App = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
@@ -20,7 +20,7 @@ export function App() {
     );
 }
 
-function HomeScreen({navigation}) {
+const HomeScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>

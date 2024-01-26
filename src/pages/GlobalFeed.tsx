@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from "react-native";
 import {useState} from "react";
 import {pageSize} from "../apis/types";
 
-export function GlobalFeed() {
+export const GlobalFeed = () => {
     const [selectedTag, setTag] = useState('');
     const [articlesPagination, setArticlesPagination] = useState({offset: 0, limit: pageSize});
     const [articlesData, setArticlesData] = useState([]);

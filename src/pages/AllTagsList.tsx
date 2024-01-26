@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from "react-native";
 import {Tags} from "./Tag";
 import {fetchAllTags} from "../apis/tags";
 
-export function AllTagsList({onTagClick, setArticlesPagination, setArticlesData}) {
+export const AllTagsList = ({onTagClick, setArticlesPagination, setArticlesData}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
