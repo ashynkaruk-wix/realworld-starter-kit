@@ -14,13 +14,13 @@ export const Article = ({route}) => {
     return (<View>
         {loading ? (
             <Text>Loading...</Text>
-        ) : (<View key={slug}>
+        ) : (<ScrollView key={slug}>
             <Text style={styles.title}>{article.title}</Text>
             <Author author={article.author} createdAt={article.createdAt}></Author>
-            <ScrollView style={{ flexGrow: 0.7}}><Text style={styles.body}>{article.body}</Text></ScrollView>
+            <Text style={styles.body}>{article.body}</Text>
             {tagsComponent}
             <View style={styles.hrLine}/>
-        </View>)
+        </ScrollView>)
         }
     </View>)
 }
