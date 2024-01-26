@@ -1,11 +1,11 @@
-import {StyleSheet, Text, View} from "react-native";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {Tags} from "./Tag";
 import {useEffect, useState} from "react";
 import {getArticle} from "../apis/articles";
 import {Author} from "./Author";
 
 export function Article({route}) {
-    const { slug } = route.params;
+    const { slug, tagsComponent } = route.params;
     const [article, setArticle] = useState(undefined);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -17,10 +17,8 @@ export function Article({route}) {
         ) : (<View key={slug}>
             <Text style={styles.title}>{article.title}</Text>
             <Author author={article.author} createdAt={article.createdAt}></Author>
-            <Text style={styles.body}>{article.body}</Text>
-            {/*<View style={styles.tags}>*/}
-            {/*    <Tags tags={article.tagList} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination} setData={setData}></Tags>*/}
-            {/*</View>*/}
+            <ScrollView style={{ flexGrow: 0.7 }}><Text style={styles.body}>{article.body}</Text></ScrollView>
+            {tagsComponent}
             <View style={styles.hrLine}/>
         </View>)
         }
@@ -41,6 +39,7 @@ const styles = StyleSheet.create({
         marginTop: 4,
         fontSize: 14,
         color: "#999",
+        flexGrow: 0.5
     },
     hrLine: {
         margin: 14,

@@ -6,13 +6,17 @@ import {useNavigation} from "@react-navigation/native";
 export function ArticleItem({article, onTagClick, setArticlesPagination, setData}) {
    const navigation = useNavigation();
 
+    const tagsComponent = <View style={styles.tags}>
+        <Tags tags={article.tagList} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination} setData={setData}></Tags>
+    </View>;
     return (<View key={article.slug}>
         <Author author={article.author} createdAt={article.createdAt}></Author>
-        <Text style={styles.title} onPress={_ => navigation.navigate('Article', {slug: article.slug})}>{article.title}</Text>
+        <Text style={styles.title} onPress={_ => navigation.navigate('Article', {
+            slug: article.slug,
+            tagsComponent: tagsComponent
+        })}>{article.title}</Text>
         <Text style={styles.description}>{article.description}</Text>
-        <View style={styles.tags}>
-            <Tags tags={article.tagList} onTagClick={onTagClick} setArticlesPagination={setArticlesPagination} setData={setData}></Tags>
-        </View>
+        {tagsComponent}
         <View style={styles.hrLine}/>
     </View>)
 }
